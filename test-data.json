@@ -1,0 +1,108 @@
+[
+	{
+		"model": "Stratocaster",
+		"name": "American Ultra Luxe Vintage '60s",
+		"price": 2899.99,
+		"body": "Maple",
+		"neck": "Maple",
+		"fingerboard": "Rosewood",
+		"pickups": [
+			"Pure Vintage '61 Strat Single-Coils",
+			"Haymaker Humbucker"
+		],
+		"colors": [
+			"Fiesta Red",
+			"Sea Foam Green"
+		]
+	},
+	{
+		"model": "Telecaster",
+		"name": "American Professional Classic",
+		"price": 1499.99,
+		"body": "Alder",
+		"neck": "Maple",
+		"fingerboard": "Maple",
+		"pickups": "Coastline '63 Telecaster",
+		"colors": [
+			"3-Color Sunburst",
+			"Faded Black",
+			"Faded Dakota Red",
+			"Butterscotch Blonde",
+			"Faded Sherwood Green Metallic",
+			"Faded Lake Placid Blue"
+		]
+	},
+	{
+		"model": "Jazzmaster",
+		"name": "American Professional Classic",
+		"price": 1599.99,
+		"body": "Alder",
+		"neck": "Maple",
+		"fingerboard": "Rosewood",
+		"pickups": "Coastline '65 Jazzmaster",
+		"colors": [
+			"3-Color Sunburst",
+			"Faded Sherwood Green Metallic",
+			"Faded Dakota Red",
+			"Faded Firemist Gold"
+		]
+	},
+	{
+		"model": "Jaguar",
+		"name": "Vintera II '70s",
+		"price": 1569.99,
+		"body": "Alder",
+		"neck": "Maple",
+		"fingerboard": "Maple",
+		"pickups": "Vintage-Style Early-'70s",
+		"colors": [
+			"Black",
+			"Vintage White"
+		]
+	},
+	{
+		"model": "Meteora",
+		"name": "American Ultra II",
+		"price": 2359.99,
+		"body": "Alder",
+		"neck": "Maple",
+		"fingerboard": "Maple",
+		"pickups": "Haymaker Humbuckers",
+		"colors": [
+			"Ultraburst",
+			"Texas Tea",
+			"Avalanche"
+		]
+	},
+	{
+		"model": "Mustang",
+		"name": "Player II",
+		"price": 839.99,
+		"body": "Alder",
+		"neck": "Maple",
+		"fingerboard": "Rosewood",
+		"pickups": "Player Series Alnico V Single-Coil Mustang",
+		"colors": [
+			"Black",
+			"Aquatone Blue",
+			"Birch Green",
+			"3-Color Sunburst",
+			"Hialeah Yellow"
+		]
+	},
+	{
+		"model": "Starcaster",
+		"name": "Tom DeLonge",
+		"price": 1259.99,
+		"body": "Maple",
+		"neck": "Maple",
+		"fingerboard": "Rosewood",
+		"pickups": "Seymour Duncan SH-5 Duncan Custom",
+		"colors": [
+			"Shoreline Gold",
+			"Surf Green",
+			"Olympic White",
+			"Shell Pink"
+		]
+	}
+]
