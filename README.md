@@ -1,6 +1,6 @@
 # Fender Guitars API
 
-![Project logo](https://github.com/jlinville01/retro-game-store/blob/main/assets/Fender-Logo-JPG_1211322105.jpg)
+![Project logo](https://github.com/jlinville01/fender-api/blob/main/assets/Fender-Logo-JPG_1211322105.jpg)
 
 ## Setup
 
