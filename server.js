@@ -1,19 +1,22 @@
-// server.js
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
 
 const app = express();
-const PORT = 3000;
+
+// Change this if you want a different port
+const PORT = process.env.PORT || 3000;
 
 // Path to the JSON data file
 const DATA_FILE = path.join(__dirname, "test-data.json");
+
+app.use(express.json());
 
 // In-memory store
 let guitars = [];
 let nextId = 1;
 
-// ---------- Helper functions ----------
+// ---------- HELPER FUNCTIONS ----------
 
 // Load guitars from JSON file into memory
 function loadGuitarsFromFile() {
@@ -26,38 +29,38 @@ function loadGuitarsFromFile() {
       id: index + 1,
       // Keep all original properties from JSON
       ...guitar,
-      // Add a neckLength field (not in original JSON) – you can update later via PUT
-      neckLength: guitar.neckLength || null,
     }));
 
-    // Set nextId to max existing id + 1
-    nextId = guitars.reduce((max, g) => Math.max(max, g.id), 0) + 1;
+    nextId = guitars.length
+      ? Math.max(...guitars.map((p) => p.id)) + 1
+      : 1;
 
     console.log(`Loaded ${guitars.length} guitars from test-data.json`);
   } catch (err) {
-    console.error("Error loading data from test-data.json:", err);
-    guitars = [];
+    console.error('Error loading guitars from file:', err.message);
+    players = [];
     nextId = 1;
   }
 }
 
 // Save current in-memory guitars back to JSON file
 function saveGuitarsToFile() {
+  // Don’t write to disk when running tests
+  if (process.env.NODE_ENV === 'test') {
+    return;
+  }
+
   try {
-    // Strip out id & neckLength if you only want original fields in the file:
-    // Here we keep everything, including id & neckLength.
-    fs.writeFileSync(DATA_FILE, JSON.stringify(guitars, null, 2), "utf-8");
-    console.log("Saved guitars to test-data.json");
+    const dataToSave = guitars.map(({ id, ...rest }) => rest);
+    fs.writeFileSync(DATA_FILE, JSON.stringify(dataToSave, null, 2));
+    console.log('Guitars saved to test-data.json');
   } catch (err) {
-    console.error("Error saving data to test-data.json:", err);
+    console.error('Error saving guitars to file:', err.message);
   }
 }
 
 // Initialize data at startup
 loadGuitarsFromFile();
-
-// Middleware to parse JSON bodies
-app.use(express.json());
 
 // ---------- ROUTES ----------
 
@@ -153,16 +156,20 @@ app.delete("/guitars/:id", (req, res) => {
   res.json({ message: "Guitar deleted", guitar: deleted });
 });
 
-// POST /refresh – reload data from test-data.json (discard in-memory changes)
-app.post("/refresh", (req, res) => {
+// OPTIONAL: Refresh data from test-data.json without restarting the server
+app.post('/admin/refresh', (req, res) => {
   loadGuitarsFromFile();
   res.json({
-    message: "Data reloaded from test-data.json",
+    message: 'Guitars reloaded from test-data.json',
     count: guitars.length,
   });
 });
 
-// ---------- Start server ----------
-app.listen(PORT, () => {
-  console.log(`Fender Guitars API listening on http://localhost:${PORT}`);
-});
+// ---------- Start server (only if run directly) ----------
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Fender Guitars API listening on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
